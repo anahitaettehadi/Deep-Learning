@@ -2,7 +2,6 @@ import numpy as np
 import sys
 import torch, sys, pdb, os
 from model import Word2Vec_neg_sampling
-from utils_modified import nearest_word
 from config import EMBEDDING_DIM, MODEL_DIR, DEVICE
 
 
