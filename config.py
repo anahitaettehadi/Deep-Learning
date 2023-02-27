@@ -12,6 +12,7 @@ CONTEXT_SIZE          = 5
 FRACTION_DATA         = 1
 SUBSAMPLING           = True
 SAMPLING_RATE         = 0.001
+LR                    = 0.001
 NEGATIVE_SAMPLES      = 20
 EMBEDDING_DIM         = 100
 TEST_WORDS            = ['india', 'computer', 'gold', 'football', 'cars', 'war', 'apple', 'music', 'helicopter']

@@ -21,7 +21,8 @@ import tensorflow as tf
 import tensorboard as tb
 tf.io.gfile = tb.compat.tensorflow_stub.io.gfile
 
-os.makedirs(MODEL_DIR)
+if not os.path.exists(MODEL_DIR):
+  os.makedirs(MODEL_DIR)
 
 if not os.path.exists(PREPROCESSED_DATA_PATH):
     train_dataset = word2vec_dataset(DATA_SOURCE, CONTEXT_SIZE, FRACTION_DATA, SUBSAMPLING, SAMPLING_RATE)
