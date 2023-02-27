@@ -44,17 +44,20 @@ class word2vec_dataset(Dataset):
         training_data = []
         #TODO: create pairs of context and center word incides and them to training data
         for sentence in tqdm(split_text):
-          for sentence_center_word_idx, center_word in enumerate(sentence):
-              center_word_indice = word_to_ix[center_word]
-              for dist in range(-context_size, context_size):                
+          indices = [word_to_ix[word] for word in sentence]  
+          for sentence_center_word_idx in range(len(sentence)):
+                
+              for dist in range(-context_size, context_size+1):                
                   sentence_context_word_idx = sentence_center_word_idx + dist
-                  if sentence_center_word_idx == sentence_context_word_idx or sentence_context_word_idx >= len(sentence) or sentence_context_word_idx < 0:
-                      continue
-                  
-                  context_word = sentence[sentence_context_word_idx]
-                  context_word_indice = word_to_ix[context_word]
 
-                  training_data.append([center_word_indice, context_word_indice])
+                  if sentence_center_word_idx < 0 or sentence_context_word_idx >= len(sentence) or sentence_center_word_idx == sentence_context_word_idx:
+                      continue
+                    
+                  context_word_idx = indices[sentence_context_word_idx]
+                  center_word_idx  = indices[sentence_center_word_idx]
+                    
+                  training_data.append([center_word_idx, context_word_idx])
+        
         return training_data
             
     def load_data(self, data_source, context_size, fraction_data, subsampling, sampling_rate):
